@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 import logo from "./logo.svg"
 import "./App.css"
+import { connect } from "./redux/blockchain/blockchainActions";
+import { fetchData } from "./redux/data/dataActions";
+import * as s from "./styles/globalStyles";
+import styled from "styled-components";
 
 class LambdaDemo extends Component {
   constructor(props) {
