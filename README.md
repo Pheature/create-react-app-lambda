@@ -1,85 +1,109 @@
-# React SaaS Template
-Remains of a SaaS business I once tried to build. Now transformed into a template for building an SaaS/admin application using React + Material-UI.
 
-[**Check out the demo**](https://reactsaastemplate.com)
+## DApp develop demo
 
-![Node.js CI](https://github.com/dunky11/react-saas-template/workflows/Node.js%20CI/badge.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+### Component
+1. [truffle--Ethereum development framework](https://github.com/trufflesuite/truffle)
+2. [dva--React and redux based, lightweight and elm-style framework](https://github.com/dvajs/dva)
+3. [web3.js--Ethereum JavaScript API](https://github.com/ethereum/web3.js)
+4. [testrpc--Fast Ethereum RPC client for testing and development](https://github.com/ethereumjs/testrpc)
 
-[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
-
-
-## Getting Started
-
-### Prerequisites
-
-#### Node.js 12+ (versions below could work, but are not tested)
-
-* Linux:
-
-   ```
-   sudo apt install nodejs npm
-   ```
-
-* Windows or macOS:
-
-   https://nodejs.org/en/
-
-### Installing
-
-1. Clone the repository
-
-   ```
-   git clone https://github.com/dunky11/react-saas-template
-   ```
-2. Install dependencies, this can take a minute
-
-   ```
-   cd react-saas-template
-   npm install
-   ```
-3. Start the local server
-
-   ```
-   npm start
-   ```
-
-Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
-
-### What to do next?
-
-If you are new to React, you should watch a [basic React tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
-
-If you know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
-
-You can go into [src/theme.js](/src/theme.js) and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
-
-## Deployment
-
-If you are satisfied with the state of your website you can run:
+## Get Start
+### 1. Testprc
 
 ```
-npm run build 
+npm install -g truffle
+```
+Then run testprc by docker or terminal.
+
+```
+testrpc -a 10 --debug --db /data/testrpc --mem 2048 -b 1
+```
+Or
+
+```
+docker run -d -p 8545:8545 -v /root/testrpc-db:/data/testrpc --name testrpc harshjv/testrpc:latest -a 10 --debug --db /data/testrpc --mem 2048 -b 1
 ```
 
-It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
+### 2. Truffle
 
-## Build With
+  ```
+  npm install -g truffle
+  ```
 
-* [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
-* [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
-* [React-Router](https://github.com/ReactTraining/react-router) - Routing of the app
-* [Pace](https://github.com/HubSpot/pace) - Loading bar at the top
-* [Emoji-Mart](https://github.com/missive/emoji-mart) - Picker for the emojis
-* [React-Dropzone](https://github.com/react-dropzone/react-dropzone) - File drop component for uploads
-* [Recharts](https://github.com/recharts/recharts) - Charting library I used for the statistics
-* [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
-* [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
-* [React-Stripe-js](https://github.com/stripe/react-stripe-js) - Stripes payment elements
+1. `cd truffle`, You could build and migrate your contracts to blockchain.
+2. `npm run build`, Build and migrate contracts
+4. `npm test`, use mocha to test contracts.
 
-## Contribute
-Show your support by ⭐ the project. Pull requests are always welcome.
+### 3 Network config
 
-## License
+```
+config/index.js
+```
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details.
+### 4. React framework
+
+```
+npm start
+```
+
+
+### 5. Config contracts
+Config contract in file `config/index.js`
+
+```
+  contracts: {
+    MetaCoin: true,
+    OtherContract: true,
+    OtherContract: false,  // not load
+  },
+```
+
+### 6. Use contract
+All of contract and web3 will be mount on `window.dapp`;
+
+```
+window.web3 = web3;
+window.dapp = {
+  web3,
+  accounts,
+  contracts,
+};
+```
+
+#### Example 1
+
+```
+let MetaCoin = window.dapp.constracts.MetaCoin;
+MetaCoin.sendCoin(xxxx)
+```
+
+#### Example 2
+
+`./src/services/contract.js`
+
+```
+export async function testContract(dapp) {
+  const accounts = dapp.accounts;
+  const result = await dapp.contracts.MetaCoin.sendCoin(accounts[1], 10, { from: accounts[0] });
+  console.log(result.valueOf());
+  const balance = await dapp.contracts.MetaCoin.getBalance.call(accounts[0], { from: accounts[0] });
+  console.log(balance.valueOf());
+}
+```
+
+#### Eaxample 3
+
+```
+const accounts = await new Promise((resolve, reject) => {
+  web3.eth.getAccounts((err, result) => {
+    if (err) {
+      return reject(new Error('There was an error fetching your accounts.'));
+    }
+
+    if (!result.length) {
+      return reject(new Error("Couldn't get any accounts! Make sure your Ethereum client is configured correctly."));
+    }
+    resolve(result);
+  });
+});
+```
