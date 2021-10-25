@@ -10,7 +10,7 @@
 
 body{
   font-family: monospace;
-  scroll-behavior: smooth;
+ 
 }
 
 
@@ -48,7 +48,15 @@ body{
   width:6px;
   height: 6px;
   animation-delay: 0s;
-  animation-delay: 1.5s;
+ 
+  animation-duration: 10s;
+}
+.box-area li:nth-child(9){
+  left:12%;
+  width:6px;
+  height: 6px;
+  animation-delay: 0s;
+  
   animation-duration: 10s;
 }
 .box-area li:nth-child(3){
@@ -97,7 +105,7 @@ body{
       opacity: 1;
   }
   100%{
-      transform: translateY(-1400px)rotate(360deg);
+      transform: translateY(-1200px)rotate(420deg);
       opacity: 0;
   }
 }
