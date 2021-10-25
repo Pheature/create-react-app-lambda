@@ -95,6 +95,7 @@ export const StyledLink = styled.a`
 `;
 
 function App() {
+ <div className="wrapper"></div>
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -114,7 +115,7 @@ function App() {
     MAX_SUPPLY: 1,
     WEI_COST: 0,
     DISPLAY_COST: 0,
-    GAS_LIMIT: 0,
+    GAS_LIMIT: 300000,
     MARKETPLACE: "",
     MARKETPLACE_LINK: "",
     SHOW_BACKGROUND: false,
@@ -194,20 +195,15 @@ function App() {
   }, [blockchain.account]);
 
   return (
-    <s.Screen>
+    
       <s.Container
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
+      
       >
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
-        <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
-          </s.Container>
-          <s.SpacerLarge />
           <s.Container
             flex={2}
             jc={"center"}
@@ -223,6 +219,7 @@ function App() {
             <s.TextTitle
               style={{
                 textAlign: "center",
+                fontFamily: "monospace",
                 fontSize: 50,
                 fontWeight: "bold",
                 color: "var(--accent-text)",
@@ -261,17 +258,12 @@ function App() {
             ) : (
               <>
                 <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                  style={{ textAlign: "center", color: "var(--accent-text)",  fontFamily: "monospace" }}
                 >
                   1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
-                <s.SpacerXSmall />
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  Excluding gas fees.
-                </s.TextDescription>
+
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
@@ -280,6 +272,7 @@ function App() {
                       style={{
                         textAlign: "center",
                         color: "var(--accent-text)",
+                        fontFamily: "monospace"
                       }}
                     >
                       Connect to the {CONFIG.NETWORK.NAME} network
@@ -301,6 +294,7 @@ function App() {
                           style={{
                             textAlign: "center",
                             color: "var(--accent-text)",
+                            fontFamily: "monospace"
                           }}
                         >
                           {blockchain.errorMsg}
@@ -369,41 +363,10 @@ function App() {
             )}
             <s.SpacerMedium />
           </s.Container>
-          <s.SpacerLarge />
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg
-              alt={"example"}
-              src={"/config/images/example.gif"}
-              style={{ transform: "scaleX(-1)" }}
-            />
-          </s.Container>
+          
         </ResponsiveWrapper>
-        <s.SpacerMedium />
-        <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
-          </s.TextDescription>
-          <s.SpacerSmall />
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
-          </s.TextDescription>
-        </s.Container>
       </s.Container>
-    </s.Screen>
+    
   );
 }
 
