@@ -6,77 +6,16 @@
   --accent: #0f0000;
   --accent-text: #ececec;
 }
-*html{
-  scroll-behavior: smooth;
-}
-body{
-  margin: 0;
-  padding: 0;
-  font-family: monospace;
-  pointer-events: none;
-}
-nav{
-  width:100%;
-  background: #ececec;
-  overflow: hidden;
-  position: fixed;
-  top:0;
-  
-}
-ul{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-li{float: left;
-}
-a{
-  padding: 20px;
-  width: 100px;
-  display: block;
-  text-decoration: none;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
-
-}
-#section1 {height:700px;
-display: display-box;
-width: 100%;
-}
-#section2 {height:700px;
-  display:display-box;
-  width: 100%;
-  }
-
-  #section3 {height:700px;
-    display:display-box;
-    width: 100%;
-    }
-    
 
 
-
-
-
-
-
-
-*{
-  margin: 0;
-  padding: 0;
-}
 body{
   font-family: monospace;
   scroll-behavior: smooth;
-  pointer-events: none;
 }
 
 
 .animation-area{
-  background: linear-gradient(to left,#410106,#000000);
-  background-repeat: repeat;
+
   width:100%;
   height: 100vh;
 }
@@ -87,7 +26,6 @@ body{
   width:100%;
   height: 100%;
   overflow: hidden;
-  background-repeat: repeat;
 }
 .box-area li{
   position: absolute;
@@ -156,10 +94,7 @@ body{
       opacity: 1;
   }
   100%{
-      transform: translateY(-1200px)rotate(360deg);
+      transform: translateY(-1400px)rotate(360deg);
       opacity: 0;
   }
 }
-
-
-
