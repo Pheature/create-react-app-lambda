@@ -54,21 +54,6 @@ function NavBar(props) {
       link: "/",
       name: "Home",
       icon: <HomeIcon className="text-white" />
-    },
-    {
-      link: "/blog",
-      name: "Blog",
-      icon: <BookIcon className="text-white" />
-    },
-    {
-      name: "Register",
-      onClick: openRegisterDialog,
-      icon: <HowToRegIcon className="text-white" />
-    },
-    {
-      name: "Login",
-      onClick: openLoginDialog,
-      icon: <LockOpenIcon className="text-white" />
     }
   ];
   return (
