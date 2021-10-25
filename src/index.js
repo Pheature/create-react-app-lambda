@@ -1,21 +1,19 @@
-import dva from 'dva';
-import './index.css';
-import loadContracts from './loadContracts';
-import { testContract } from './services/contract.js';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import store from "./redux/store";
+import { Provider } from "react-redux";
+import "./styles/reset.css";
 
-// 1. Initialize
-const app = dva();
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
-// 2. Plugins
-// app.use({});
-
-// 3. Model
-// app.model(require('./models/example'));
-
-// 4. Router
-app.router(require('./router'));
-
-// 5. load contracts and Start
-loadContracts(app, window).then(async (result) => {
-  await testContract(result);
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
