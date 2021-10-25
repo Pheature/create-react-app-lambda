@@ -1,41 +1,85 @@
-# React JS Resume Web App Template      
-![ReactJS Resume Website Template](resume-screenshot.jpg?raw=true "ReactJS Resume Website Template")
-### <a href="https://react-resume-template.herokuapp.com/">LIVE DEMO</a> 
-### If this template has helped you and you'd like to support my work, feel free to [♥️ Sponsor](https://github.com/sponsors/tbakerx) the project 
-### 😁 A much improved V2 is on the way 🎉
+# React SaaS Template
+Remains of a SaaS business I once tried to build. Now transformed into a template for building an SaaS/admin application using React + Material-UI.
 
-## Description
-This is a ReactJS based personal resume website template. I have built this by following a Udemy course (credits below) and by beginning with the Ceevee template by Styleshout (credits also below), and breaking up their template into isolated React components. Data is fed directly from a JSON File. This means that in its final form, it can be customized and used by anybody simply by filling in their own personal info into the JSON file and the changes will be dynamically fed into the site. If you would like to use this template for your own personal resume website, read on to learn how to build your own copy.
+[**Check out the demo**](https://reactsaastemplate.com)
 
-## Make it Your Own!
-### 1. Make sure you have what you need
-To build this website, you will need to have Node >=6 downloaded and installed on your machine. If you don't already have it, you can get it <a href="https://nodejs.org/en/download/">HERE</a>
-### 2. Build a Create-React-App
-Next, you will build the initial application using a handy tool called Create-React-App. This allows you to get up and running with a React app without the headache of setting up build-tool configurations. Go <a href="https://reactjs.org/docs/installation.html">HERE</a> to get started.
-When the app building is finished run `cd yourappname` and run `npm start` to test it out.
-Hit ctrl+c in the terminal when you want to stop the server that the above command starts.
-For this project we will also need to install JQuery and ReactGA, do this by running `npm install jquery --save` and `npm install react-ga --save` in your terminal while inside your project folder. YOU MUST RUN THESE COMMANDS.
-### 3. Download the template
-Once you have a React app up and running by following the steps in the above link, download my code by hitting the green "clone or download" button above and hit download zip. All you will have to do now is replace the "public" and "src" folders of your newly built app with mine that you just downloaded. If you run `npm start` now, you should see that your app renders the same as the one at the live demo link above.
-### 4. Replace images and fonts
-Next, you will want to replace the images, and fonts if you like, with your own. All you have to do is replace the images at public/images/header-background.jpg, public/images/testimonials-bg.jpg and public/favicon.ico with your own. <em>YOU MUST KEEP THE SAME NAMES ON THE IMAGES.</em>  
-### 5. Fill in your personal info
-To populate the website with all of your own data, open the public/resumeData.json file and simply replace the data in there with your own. Images for the porfolio section are to be put in the public/images/portfolio folder.
-### 6. Make any styling changes you would like
-Of course, all of the code is there and nothing is hidden from you so if you would like to make any other styling changes, feel free!
-### 7. Enjoy your new Resume Website
-When you're all done, run `npm start` again and you'll see your new personal resume website! Congratulations!
+![Node.js CI](https://github.com/dunky11/react-saas-template/workflows/Node.js%20CI/badge.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
+[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
 
 
-## Credits
-##### Udemy Course
-<a href="https://www.udemy.com/projects-in-reactjs-the-complete-react-learning-course/learn/v4/overview">Projects in ReactJS: The Complete React Learning Course by Eduonix</a>
+## Getting Started
 
-#### HTML Design Template
-<a href="https://www.styleshout.com/free-templates/ceevee/">Ceevee Template by Styleshout</a>
+### Prerequisites
 
-##### Header photo credit
-<a href="https://unsplash.com/@mischievous_penguins?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Casey Horner</a>
+#### Node.js 12+ (versions below could work, but are not tested)
 
-##### Testimonial photo credit
-<a href="https://unsplash.com/@samuelzeller?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Samuel Zeller</a>
+* Linux:
+
+   ```
+   sudo apt install nodejs npm
+   ```
+
+* Windows or macOS:
+
+   https://nodejs.org/en/
+
+### Installing
+
+1. Clone the repository
+
+   ```
+   git clone https://github.com/dunky11/react-saas-template
+   ```
+2. Install dependencies, this can take a minute
+
+   ```
+   cd react-saas-template
+   npm install
+   ```
+3. Start the local server
+
+   ```
+   npm start
+   ```
+
+Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
+
+### What to do next?
+
+If you are new to React, you should watch a [basic React tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
+
+If you know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
+
+You can go into [src/theme.js](/src/theme.js) and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
+
+## Deployment
+
+If you are satisfied with the state of your website you can run:
+
+```
+npm run build 
+```
+
+It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
+
+## Build With
+
+* [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
+* [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
+* [React-Router](https://github.com/ReactTraining/react-router) - Routing of the app
+* [Pace](https://github.com/HubSpot/pace) - Loading bar at the top
+* [Emoji-Mart](https://github.com/missive/emoji-mart) - Picker for the emojis
+* [React-Dropzone](https://github.com/react-dropzone/react-dropzone) - File drop component for uploads
+* [Recharts](https://github.com/recharts/recharts) - Charting library I used for the statistics
+* [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
+* [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
+* [React-Stripe-js](https://github.com/stripe/react-stripe-js) - Stripes payment elements
+
+## Contribute
+Show your support by ⭐ the project. Pull requests are always welcome.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details.

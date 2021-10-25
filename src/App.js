@@ -1,61 +1,34 @@
-import React, { Component } from 'react';
-import ReactGA from 'react-ga';
-import $ from 'jquery';
-import './App.css';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import About from './Components/About';
-import Resume from './Components/Resume';
-import Contact from './Components/Contact';
-import Testimonials from './Components/Testimonials';
-import Portfolio from './Components/Portfolio';
+import React, { Fragment, Suspense, lazy } from "react";
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import theme from "./theme";
+import GlobalStyles from "./GlobalStyles";
+import Pace from "./shared/components/Pace";
 
-class App extends Component {
+const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
-  constructor(props){
-    super(props);
-    this.state = {
-      foo: 'bar',
-      resumeData: {}
-    };
+const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
-    ReactGA.initialize('UA-110570651-1');
-    ReactGA.pageview(window.location.pathname);
-
-  }
-
-  getResumeData(){
-    $.ajax({
-      url:'/resumeData.json',
-      dataType:'json',
-      cache: false,
-      success: function(data){
-        this.setState({resumeData: data});
-      }.bind(this),
-      error: function(xhr, status, err){
-        console.log(err);
-        alert(err);
-      }
-    });
-  }
-
-  componentDidMount(){
-    this.getResumeData();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Header data={this.state.resumeData.main}/>
-        <About data={this.state.resumeData.main}/>
-        <Resume data={this.state.resumeData.resume}/>
-        <Portfolio data={this.state.resumeData.portfolio}/>
-        <Testimonials data={this.state.resumeData.testimonials}/>
-        <Contact data={this.state.resumeData.main}/>
-        <Footer data={this.state.resumeData.main}/>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStyles />
+        <Pace color={theme.palette.primary.light} />
+        <Suspense fallback={<Fragment />}>
+          <Switch>
+            <Route path="/c">
+              <LoggedInComponent />
+            </Route>
+            <Route>
+              <LoggedOutComponent />
+            </Route>
+          </Switch>
+        </Suspense>
+      </MuiThemeProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
